@@ -22,7 +22,16 @@ Streamlit app that lets you enter a food item, calls a workflow API to fetch nut
 - `make lint` (ruff), `make format`, `make type` (mypy), `make test` (pytest), `make run`.
 
 ## Deployment
-- Works on Streamlit Community Cloud: push repo, set secrets, click deploy.
-- Docker-ready; add a simple `Dockerfile` if deploying to another platform.
+- **Streamlit Community Cloud**
+  1) Push this repo to GitHub.  
+  2) In https://share.streamlit.io, create an app and select `app.py` as the entry point.  
+  3) Add secrets in the Streamlit “Secrets” UI:
+     ```
+     WORKFLOW_API_KEY = "your_api_key_here"
+     WORKFLOW_ENDPOINT = "https://editors-elementary-displaying-employee.trycloudflare.com/v1/workflows/8b2ca1fe-6947-48c5-8347-d595077dd47e/run"
+     WORKFLOW_AUTH_SCHEME = "Bearer"
+     ```
+  4) Deploy. (Dependencies are in `requirements.txt` for Streamlit Cloud.)
+- **Docker/other**: use the included `Dockerfile`, or `make run` locally.
 
 # KeepMeHealthy
