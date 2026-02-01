@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: keep-me-healthy
+Version: 0.1.0
+Summary: Streamlit app to fetch healthy grocery recommendations via workflow API.
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: streamlit>=1.38
+Requires-Dist: httpx>=0.27
+Requires-Dist: pydantic>=2.7
+Requires-Dist: pydantic-settings>=2.3
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: diskcache>=5.6
+Requires-Dist: tenacity>=8.2
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"
+Requires-Dist: mypy>=1.11; extra == "dev"
+Requires-Dist: pytest-mock>=3.14; extra == "dev"
+
+# Keep Me Healthy (Streamlit)
+
+Streamlit app that lets you enter a food item, calls a workflow API to fetch nutritionist-approved purchase suggestions in Montreal, and renders them in a clean table with pros/cons and source links.
+
+## Quick start
+
+1. Create a virtual environment (Python 3.10+).
+2. `pip install -e ".[dev]"`  
+3. Provide secrets:
+   - Option A: set env vars `WORKFLOW_API_KEY` and optionally `WORKFLOW_ENDPOINT`.
+   - Option B: copy `.env.example` to `.env` and fill the values.
+   - Option C: for Streamlit Cloud, set `[secrets]` in `.streamlit/secrets.toml` (see example).
+4. `streamlit run app.py`
+
+## Configuration
+- `WORKFLOW_ENDPOINT` (default set to the provided cloudflare URL).
+- `WORKFLOW_API_KEY` (required).
+- `WORKFLOW_QUESTION` (optional override of the prompt string).
+- `WORKFLOW_TIMEOUT_SECONDS`, `WORKFLOW_MAX_RETRIES`.
+
+## Tooling
+- `make lint` (ruff), `make format`, `make type` (mypy), `make test` (pytest), `make run`.
+
+## Deployment
+- Works on Streamlit Community Cloud: push repo, set secrets, click deploy.
+- Docker-ready; add a simple `Dockerfile` if deploying to another platform.
+
